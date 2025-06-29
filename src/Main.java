@@ -2,19 +2,26 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        //read 명령어는 1바이트의 값만 입력받아서 불편하다.
-        //하지만 Scanner 클래스는 다양한 형태의 값을 입력받을 수 있기에 자바에서 주로 사용된다.
-        //또한 Scanner는 값을 어딘가에 저장해야 한다.
-        //scan은 변수로 이 곳에 저장된다.
+        int a;                    //4바이트
+        int b = 10;
+        int intNum = 123;
+        long longNum  =123L; //int와의 구분을 위해 뒤에 L을 붙여줌     8바이트
+        float floatNum = 123.4F; //double과의 구분을 위해 뒤에 F를 붙여줌     4바이트
+        double doubleNum = 123.4; //8바이트
+        char Txt = 'A'; //char 문자 자료형은 ''로 묶어줌            2바이트
+        boolean isTrue = true; //bool이 아닌 boolean으로 선언한다!!          1바이트
 
+        //위까지 일반자료형 
 
-        System.out.println(scan.nextLine()); //nextLine()은 Scanner 클래스에 속한 명령어이다.
-        //scan.nextLine()은 한 줄 단위, 즉 엔터키를 누를 때까지 내용을 입력받는다. 그 입력받은 값을 scan이라는 변수에 저장
+        String strTxt = "ABCD"; 
+        //참조 자료형이라고 한다. 값을 저장하는 기본 자료형과 달리 참조자료형은 값이 저장된 주소를 저장한다.
+        //이때 주소는 메모리에서 위치를 나타낸다. 참조 자료형에는 배열, 클래스, 인터페이스등이 있다.
+        
+        var c =10; //c에서의 auto와 비슷, 컴파일러가 초기화한 값에 의해 자료형을 추론 즉, 타입 추론
 
-        System.out.println(scan.next()); //nextLine()과 차이는 next()는 공백을 만나기 전까지만 출력한다.
+        System.out.printf("%d", b);
+        //printf는 c언어와 매우 유사 %d, %f와 같은 서식 지정자 또는 형식 지정자가 필요함
+        //서식 지정자의 종류(%d 정수, %f 실수, %c 문자, %s 문자열, %b 논리형 값, %t 시간과 날짜, %n 줄 바꿈, %%  % 기호)
 
-        scan.close(); //입력 스트림 닫기
-        //Scanner 클래스로 입력 스트림을 사용하다가 사용이 끝나면 다음과 같이 close 명령어로 닫아주는 것이 좋다.
     }
 }
