@@ -4,11 +4,11 @@
 // 에디터 여백에 있는 <icon src="AllIcons.Actions.Execute"/> 아이콘을 클릭하세요.
 public class Main {
     public static void main(String[] args) {
-        //TIP 캐럿을 강조 표시된 텍스트에 놓고 <shortcut actionId="ShowIntentionActions"/>을(를) 누르면
-        // IntelliJ IDEA이(가) 수정을 제안하는 것을 확인할 수 있습니다.
-        System.out.println("Hello and welcome!");
-        for (int i=1; i<=5; i++){
-            System.out.println("i = " +i); //C와 C++과 다른 특이한 형태를 지닌다.
-        }
+        //대표적인 명령어로는 print, printf, println이 있다.
+        System.out.print("Hello!");
+        System.out.print("Hello!\n"); //위 문장이 \n과 같이 개행 문자 또는 줄 바꿈 문자가 없기에 붙어서 출력
+        System.out.println("Hello");
+        //println은 출력하고 자동으로 줄을 바꿔줌. 특수 문자를 쓸 필요도 없고 실행결과를 구분하기도 쉬움, 실제로 얘를 제일 자주 사용
+        //printf는 교재(3장에서) 뒷 부분에 나온디고 함
     }
 }
