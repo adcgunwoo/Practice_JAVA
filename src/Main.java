@@ -1,11 +1,9 @@
 
 public class Main {
     public static void main(String[] args) {
-        System.out.printf("%d\n", 11111); //일반적인 출력
-        System.out.printf("%7d\n", 11111); //서식지정자 사이에 7을 넣어줌, 7자리중 왼쪽 2자리가 공백
-        System.out.printf("%-7d\n", 11111); //서식지정자 사이에 -7을 넣어줌, 7자리중 오른쪽 2자리가 공백
-        System.out.printf("%07d\n", 11111); //서식지정자 사이에 07을 넣어줌, 명령문 빈자리가 0으로 채워짐 0011111
-        System.out.printf("%,7d\n", 11111); //서식지정자 사이에 ,을 넣어줌, 명령문은 천 단위로 구분 기호인 쉼표로 넣고, 빈자리는 공백
-        // (공백)11,111
+        final int BirthDay = 417;
+        //C나 C++에서는 상수 키워드로 const를 사용했지만, 자바에서는 final을 쓰겠다.
+        //또한 변수를 선언하며 값을 넣는데, 값을 정확히 표현하면 리터럴 이라고 한다.
+        //리터럴의 뜻은 "문자 그대로의"
     }
 }
