@@ -3,14 +3,21 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int a = scan.nextInt();
 
-        if (a>0){
-            System.out.println("양의정수");
+        System.out.print("점수를 입력하세요 : ");
+
+        int a = scan.nextInt();
+        switch (a){
+            case (100):
+                System.out.println("축하드립니다!");
+                break;
+            default:
+                int b = 100-a;
+                System.out.println("100점에 "+ b +"점이 부족했습니다.");
         }
-        else {
-            System.out.println("0 또는 음의정수");
-        }
+
         scan.close();
+
+
     }
 }
