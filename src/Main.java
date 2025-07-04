@@ -6,9 +6,15 @@ public class Main {
 
         int a = scan.nextInt();
 
-        String Grade = (a>=95) ? "Great!" : "SoSo";
+        for (int i = 1; i <= a; i++){
+            System.out.print(i);
+        }
+        System.out.println();
+        int j=1;
+        while (j<=a){
+            System.out.print(j++);
+        }
 
-        System.out.println(Grade);
 
         scan.close();
     }
