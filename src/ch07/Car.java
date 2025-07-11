@@ -31,6 +31,9 @@ public class Car {
 
     public Car(){
         System.out.println("기본생성자를 통해 새 객체가 생성됐습니다.");
+        this.carInfo();
+        countOfCars++;
+        countOfCarsInfo();
     }
     //위 생성자는 기본생성자로서 굳이 정의하지 않아도 컴파일러가 자동으로 추가한다.
     //생성자는 여러 개 정의할수 있고, 매개변수가 전부 달라야 한다.
@@ -41,6 +44,8 @@ public class Car {
         this.year=year;
         this.color="white";
         this.carInfo();
+        countOfCars++;
+        countOfCarsInfo();
     }
     public Car(String brand, int year,String color){
         System.out.println("브랜드, 연식, 색을 받은 새로운 자동차 객체가 생성됐습니다.");
@@ -48,6 +53,8 @@ public class Car {
         this.year=year;
         this.color=color;
         this.carInfo();
+        countOfCars++;
+        countOfCarsInfo();
     }
 
 
