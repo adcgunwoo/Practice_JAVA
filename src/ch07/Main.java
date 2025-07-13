@@ -6,10 +6,9 @@ package ch07;
 //default : 접근 제한자를 따로 명시하지 않으면 자동으로 default 권한이 주어지고, 같은 패키지의 클래스에서만 접근 가능하고, 클래스, 필드, 메서드, 생성자 모두 가능하다.
 public class Main {
     public static void main(String[] args) {
-        AccessExample ae = new AccessExample();
-        ae.publicMethod(); //public이기에 접근 가능
-        ae.protectedMethod(); //같은 패키지의 클래스이기에 접근이 가능함
-        ae.defaultMethod();
-        ae.privatedMethod();
+    Car car = new Car(250);
+    System.out.println("최대 속도 : " + car.getMaxSpeed());
+    car.setMaxSpeed(200);
+    System.out.println("바뀐 최대 속도 : " + car.getMaxSpeed());
     }
 }
