@@ -7,8 +7,8 @@ package ch07;
 public class Main {
     public static void main(String[] args) {
     Car car = new Car(250);
-    System.out.println("최대 속도 : " + car.getMaxSpeed());
-    car.setMaxSpeed(200);
+    System.out.println("최대 속도 : " + car.getMaxSpeed()); //get함수 호출
+    car.setMaxSpeed(200); //set함수 호출
     System.out.println("바뀐 최대 속도 : " + car.getMaxSpeed());
     }
 }

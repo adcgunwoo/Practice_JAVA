@@ -18,5 +18,5 @@ public class Car {
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }//setter(세터) 함수
-
+    //메서드의 자료형에 유의하자
 }
