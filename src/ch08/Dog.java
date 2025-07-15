@@ -3,14 +3,11 @@ package ch08;
 public class Dog extends Animal {
     //필드
     String breed; //견종
-//    String name; //이름
-//    int age; //나이
-//
-//    //메서드
-//    public void eat(){
-//        System.out.println(name+"이(가) 먹을 밥이 없습니다.");
-//    }             부모 클래스인 Main 클래스에 이미 정의된 부분이기에 지운다
+
     public void roll(){
         System.out.println(name+"이(가) 바닥을 구릅니다");
     }
+    public void roll(int cnt){
+        System.out.println(name + "이(가) 바닥을 " +cnt+"번 구릅니다." );
+    }//메서드 오버로딩 : 메서드명은 같지만 매개변수의 개수와 순서, 자료형이 다른 메서드를 같은 클래스 안에 여러 개 정의하는 것이다.
 }

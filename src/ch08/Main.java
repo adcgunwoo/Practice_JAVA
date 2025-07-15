@@ -14,6 +14,8 @@ public class Main {
         cat.name = "새빛";
         cat.rub();
         System.out.println("저는 " + cat.name + "이에요. 나이는 " + cat.age + "살이에요.");
+        cat.eat();
+        dog.roll(2);
         //접근 제한자가 default이므로 같은 패키지 내에서는 제약없이 접근할 수 있었다.
     }
 }

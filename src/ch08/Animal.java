@@ -7,6 +7,6 @@ public class Animal {
 
     //메서드
     public void eat(){
-        System.out.println(name+"이(가) 먹을 밥이 없습니다.");
+        System.out.println(name+"이(가) 밥을 먹습니다.");
     }
 }
