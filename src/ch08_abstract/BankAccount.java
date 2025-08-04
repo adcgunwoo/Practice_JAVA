@@ -11,7 +11,7 @@ public abstract class BankAccount { //접근 제한자와 class 사이에 abstra
     public abstract void withdraw(double amount);
     public abstract void deposit(double amount);
 
-    public void displayAccountInfo(){//계좌번호 출력 메서드
+    public void displayAccountInfo(){ //계좌번호 출력 메서드
         System.out.println("계좌번호 : " + accountNumber);
         System.out.println("잔액 : " + balance+ "원");
     }
