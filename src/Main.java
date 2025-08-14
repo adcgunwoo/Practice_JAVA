@@ -1,28 +1,20 @@
-import java.util.Scanner;
-
+//래퍼 클래스
+//컬렉션 프레임워크를 이해하는 데 필요한 개념 중 하나인 래퍼 클래스는 기본형의 값을 객체로 변환해주는 클래스이다.
+//자바의 자료형은 기본형과 참조형으로 나뉘는데, 기본형은 정수형, 실수형, 문자형, 논리형의 값을 저장하고
+//참조형은 객체의 위치를 나타내는 주소를 저장한다. 그런데 컬렉션은 객체만 저장할 수 있다.
+//그래서 정수나 실수 같은 기본형의 값을 사용하려면 래퍼 클래스가 필요하다.
 public class Main {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("첫번째 정수를 입력하세요. -->");
-        int a = scan.nextInt();
-        System.out.println("두번째 정수를 입력하세요. -->");
-        int b = scan.nextInt();
-        try {
-            if(b==3){ //3으로 나누려 할때 고의로 예외를 던짐
-                throw new ArithmeticException("3으로 나눌 수 없습니다.");
-                //new 키워드로 ArithmeticException 클래스의 객체를 생성
-                //이 객체를 catch로 던짐
-            }
-            int result=a/b;
-            System.out.println("결과: "+result);
-        }
-        catch (ArithmeticException e){
-            System.out.println(e.getMessage());
-            //getMessage() 메서드는 Throwable 클래스에 속한 메서드로, 예외가 발생할 때 표시하는 예외 메시지에(by zero)를 문자열로 반환
-            //예외 객체를 생성할 때 예외 메시지를 지정해 전달하면 getMessage() 메서드로 반환할 메시지를 직접 지정할 수 있다.
-        }
-        finally {
-            System.out.println("프로그램을 종료합니다.");
-        }
+        int a = 5;
+        //Integer aObj = new Integer(a); 명시적 박싱, 버전 9이상에서 지원 중단되었음
+        //기본형 값을 래퍼 클래스로 감싸 객체로 변환하는 과정을 박싱이라고 한다. 위와 달리 요즘은 오토박싱이다.(자바 5이후부터)
+        int b = 10;
+        Integer bObj = b; //오토박싱
+
+        //Integer numObj = new Integer(10);
+        //int num = numObj.intValue(); 명시적 언박싱, 버전 9이상에서 지원 중단됨
+        //반대로 객체를 기본형으로 변환하는 것을 언박싱이라고 한다.
+        Integer numObj = 10;
+        int num = numObj; //오토언박싱
     }
 }
