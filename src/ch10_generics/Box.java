@@ -1,11 +1,11 @@
 package ch10_generics;
 
-public class Box {
-    private Object content;
-    public void setContent(Object content){
-        this.content = content;
+public class Box<T> {
+    private T content;
+    public void setContent(T content){
+        this.content=content;
     }
-    public Object getContent(){
+    public T getContent(){
         return content;
     }
 }

@@ -2,14 +2,22 @@ package ch10_generics;
 
 public class Main {
     public static void main(String[] args){
-        Box box=new Box(); //새로운 Box 객체 생성
+        Box<String> box=new Box<>(); //String형의 Box 객체 생성
         box.setContent("Hello World!");
-        Integer number = (Integer)box.getContent();
-        System.out.println(number);
+        String content1 = box.getContent(); //형변환 불필요
+        System.out.println(content1);
     }
 }
-//에러 발생!
-//setContent 에서 Object형으로 저장되는데, getContent에서 Object형의 값을 반환하는데, 이를 Integer형으로 변환하려 하였다.
-//그러나 content 필드에 저장된 값은 String이다. String객체를 Integer형으로 형변환할 수 없으므로 실행하면 ClassCastException 예외가 발생
-//타입 안정성이 보장되지 않는 상황이다. 타입안전성은 프로그래밍언어에서 데이터의 자료형이 예상하지 못한 방식으로 변환되거나
-//잘못된 자료형의 데이터가 사용되는 것을 방지하는 성질을 의미한다.
+//제너릭은 타입 안정성을 보장하고 코드 재사용성을 높이기 위해 자바에 도입된 기능, 타입 매개변수를 사용
+//타입 매개변수는 인터페이스, 클래스, 메서드를 정의할 때 자료형을 지정하지 않고 나중에 지정할 수 있게 하는 변수이다.
+//나중에 사용할 때 해당 객체에 저장할 수 있는 값의 자료형을 넣는다. 자료형을 마치 메서드의 매개변수처럼 다룬다고 해서 타입 매개변수라고 부름
+//형식은 클래스로는 class 클래스명<타입 매개변수> {},  메서드로는 public <타입 매개변수> 반환형 메서드명(타입_매개변수 매개변수); 이다
+//타입 매개변수는 주로 알파벳 대문자 한 글자로 표현됨(암묵적 규칙이지 다른것도 OK)
+//<T> : 클래스나 메서드에서 가장 많이 사용, T는 Integer, String, Double 등 다양한 참조형으로 대체 가능
+//<E> : 주로 List 나 Set의 구현 클래스에서 요소를 나타낼 때 사용, E는 각 요소의 자료형을 의미
+//<K, V> Map처럼 키-값 쌍을 다루는 자료구조에서 사용한다. K는 키의 자료형을, V는 값의 자료형을 나타낸다.
+//<N> : 주로 숫자형을 다루는 클래스나 메서드에서 사용
+
+//실체 객체를 생성할 때는 자료형을 지정한다. 이때 생성자를 호출하는 부분에서 자료형을 유추할 수 있으면 <>를 사용해 자료형 생략 가능
+//클래스명<자료형> 변수 = new 클래스명<자료형>();
+//클래스명<자료형> 변수 = new 클래스명<>();            <>를 사용해 자료형을 생략하였음
