@@ -1,7 +1,9 @@
-package ch10_list;
+package ch10_arraylist;
 //List 인터페이스의 특징 : 삽입된 순서를 유지, 중복을 허용(같은 값의 요소를 여러번 추가 가능),
 // 각 요소를 가리키는 인덱스가 있고, 이를 통해 요소에 접근 가능함(인덱스는 0부터 시작), 크기가 변경될 수 있음(요소를 추가하거나 삭제함으로써)
 import java.util.ArrayList;
+//ArrayList<자료형> 변수 = new ArrayList<>(용량); 형태
+
 
 public class Main {
     public static void main(String[] args){
