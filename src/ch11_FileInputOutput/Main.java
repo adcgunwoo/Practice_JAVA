@@ -1,33 +1,51 @@
 package ch11_FileInputOutput;
 
 import javax.imageio.IIOException;
-import java.io.FileInputStream;
-//파일 입출력은 프로그램이 외부에 저장된 데이터를 읽거나, 프로그램의 데이터를 파일로 저장하는 작업이다.
-//예를 들어, 텍스트 파일에서 데이터를 읽거나 이미지 파일을 메모리에 로드하는 작업이 입력에 해당된다.
-//또한, 계산 결과를 파일에 저장하거나 로그를 파일에 기록하는 작업이 출력에 해당된다.
-//아래는 파일이 존재하지 않아 예외가 발생하여 에러가 발생하게 작성함i
+import java.io.BufferedReader;
+import java.io.FileReader;
+//FileReader/BufferedReader 클래스
+//FileReader 클래스는 파일에서 문자 단위로 데이터를 읽어오는 데 사용한다. 주로 텍스트 파일을 읽을 때 사용
+//FileReader 클래스는 성능 개선을 위해 BufferedReader 클래스도 함께 사용
+//BufferedReader 클래스는 버퍼를 사용해 데이터를 한 번에 읽고, 한 줄 단위로 데이터를 처리하는 기능을 제공
+//FileReader 클래스는 FileInputStream 클래스의 메서드와 읽어오는 데이터 단위만 다르고 거의 같다. 추가로 아래는 BufferedReader 클래스에서 사용하는 메서드
+
+//readLine(): 한 줄을 읽어 문자열로 반환. 더 이상 읽을 줄이 없으면 null을 반환
+//ready(): 입력 스트림에서 읽을 준비가 됐는지, 즉 버퍼에 읽을 데이터가 있는지 확인
+//close(): 스트림을 닫고, 관련된 시스템 자원을 모두 해제, try-with-resources 문법을 사용하면 이 메서드는 자동으로 호출
+
 
 public class Main {
     public static void main(String[] args){
-        try(FileInputStream fis = new FileInputStream("D:/input.txt")){ //파일을 읽기 위해 FileInputStream 객체를 생성해 스트림을 연다.
-            //이때 해당 파일이 존재하지 않으면 FileNotFoundException이 발생할 수 있다.
-            //스트림을 열고 나면 닫아야 하는데, close() 메서드를 호출하는 대신 try-with-resources 문법을 사용해 자원을 자동으로 닫는다.
-            //파일이 성공적으로 열리면 fis 변수에 FileInputStream 객체가 할당된다.
-            int data; //파일에서 읽어들인 데이터르 저장하기 위해 int형 변수를 선언한다. 이 변수에 데이터를 1바이트씩 저장한다.
-            while ((data = fis.read()) !=-1){ //read() 메서드를 호출해 파일에서 1바이트씩 데이터를 읽는다.
-                //파일에서 더 이상 읽을 데이터가 없으면 -1을 반환한다. 파일에서 읽은 데이터를 data 변수에 저장하고, -1이 반환될 때까지 반복한다.
-                System.out.println((char)data); //data 변수에 저장된 데이터를 문자로 변환(char)해 출력한다.
+        try (BufferedReader br = new BufferedReader(new FileReader("D:/input.txt"))){
+            //D:/input.txt 파일을 읽기 위해 FileReader 객체를 생성해 스트림을 연다.
+            //FileReader 객체를 인자로 받아 BufferReader 객체를 생성한다.
+            //BufferedReader 객체는 스트림을 감싸서 FIleReader 객체가 읽어온 데이터를 BufferedReader 객체의 버퍼에 저장한다.
+            //데이터는 버퍼 크기만큼 한 번에 읽는다.
+            //try-with-resources 문법으로 스트림을 자동으로 닫는다.
+            String line; //읽어들인 텍스트 한 줄을 저장할 line 변수를 선언한다.
+            while ((line = br.readLine()) != null) {
+                //readLine() 메서드로 BufferedReader 객체의 버퍼에서 텍스트를 한 줄씩 읽어와 line 변수에 저장
+                //더 이상 읽을 줄이 없으면 null을 반환
+                System.out.println(line); //읽어들인 텍스트 한 줄을 출력한다.
             }
         }
         catch (IIOException e){
+            //try-with-resources 문법에 의해 try 블록이 끝나면 스트림이 자동으로 닫힌다.
+            //try 블록에서 발생할 수 있는 예외를 처리한다. 파일이 존재하지 않거나 접근 권한이 없으면 예외가 발생할 수 있다.
             e.printStackTrace();
-            //try 블록이 끝나고 파일 읽기가 완료되면 스트림은 자동으로 닫힌다. try 블록에서 발생할 수 있는 예외를 처리한다.
-            //printStackTrace()는 예외가 발생했을 떄 예외가 발생한 순간부터 메서드 호출이 어떤 경로를 따라왔는지에 대한 정보를 출력한다.
-            //실행결과처럼 예외가 발생한 메섣, 클래스, 소스 코드의 줄 번호가 정보에 포함된다.
         }
     }
 }
-//read(): 파일에서 1바이트씩 데이터를 읽어 정수로 변환한다. 파일 끝에 도달하면 -1을 반환한다.
-//read(바이트_배열): 파일에서 바이트 배열의 크기만큼 데이터를 읽고, 읽은 바이트 수를 반환한다.
-//read(바이트_배열, 위치, 길이): 파일에서 길이(바이트 단위)만큼 데이터를 읽어 바이트 배열의 지정 위치에서부터 저장한다.
-//close(): 스트림을 닫고 관련 자원을 해제
+
+//try-with-resources 문법
+//자바 7 버전부터 도입된 문법으로, 사용한 자원을 자동으로 안전하게 닫아주는 기능이다.
+//이 문법을 사용하면 close() 메서드로 명시적으로 닫지 않아도 자원이 자동으로 닫힌다.
+//메모리 낭비를 방지할 수 있다. 또한 코드의 안정성과 가독성이 향상된다.
+
+//try (지원_클래스 변수 = new 자원 클래스()) {
+//   지원 사용 코드
+// }
+//catch(예외_클래스 변수) {
+//   예외 처리 코드
+// }  형식은 이렇다. try 블록에서 자원을 선언하고 초기화한다.
+//자원은 세미콜론으로 구분해 여러 개 선언할 수 있다. 성언된 자원은 블록이 끝나면 자동으로 닫힌다.
