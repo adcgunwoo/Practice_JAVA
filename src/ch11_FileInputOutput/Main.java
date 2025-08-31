@@ -1,36 +1,29 @@
 package ch11_FileInputOutput;
-//파일 출력 작업에는 주로 FileOutputStream과 Filewriter 클래스를 사용한다.
-//이번 코드는 FileOutputStream 클래스이다. 해당 클래스는 파일에 바이트 단위로 데이터를 쓴다. 주로 바이너리 데이터를 파일에 저장할 때 사용한다.
-//주어진 파일 또는 FIle 객체로 지정된 파일에 데이터를 쓴다.
-//FIleOutputStream 객체를 생성할 떄 지정한 파일이 존재하지 않으면 해당 파일이 자동으로 생성된다. 파일이 이미 존재하면 일반적으로 해당 파일의 내용을 덮어쓴다.
-//FileOutputStream 클래스의 주요 메서드
-//write(): 1바이트 데이터를 파일에 쓴다.
-//write(바이트_배열): 바이트 배열의 데리터를 파일에 쓴다.
-//write(바이트_배열, 위치, 길이): 바이트 배열의 지정된 위치에서부터 지정된 길이만큼의 데이터를 파일에 쓴다.
-//close(): 스트림을 닫고 관련 자원을 해제한다.
 
-import java.io.FileOutputStream;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+//FileWriter/BufferedWriter 클래스
+//FIleWriter 클래스는 파일에 문자 단위로 데이터를 쓴다. 주로 텍스트 파일이나 로그 파일등 문자열 데이터를 저장할 때 사용. 단순한 파일쓰기 작업에 사용
+//기본적으로 파일을 덮어쓰지만, append 모드를 사용하면 파일 끝에 데이터 추가 가능
+//또한, BufferedWriter 클래스와 함께 사용하면 버퍼링 기능을 사용해 성능을 높일 수 있다.
+//FileOutputStream 클래스의 메서드와 쓰는 데이터 단위만 다르고 거의 같다. 아래는 BufferedWriter 클래스에서 사용하는 메서드
+//write(문자열): 전체 문자열을 버퍼에 쓴다.
+//newLine(): 새 줄을 추가한다.
+//flush(): 버퍼에 있는 모든 데이터를 출력
 
 public class Main {
     public static void main(String[] args){
-        String data = "Hello, World!"; //data 변수에 파일에 쓸 문장을 저장
-        try {
-            FileOutputStream fos = new FileOutputStream("D:/output.txt");
-            //D:/output.txt 파일을 가리키는 FIleOutputStream 객체를 생성해 스트림을 연다
-            //이 파일에 데이터를 쓸 준비가 됐고, 만약 지정한 파일이 없으면 자동으로 새로운 파일을 생성
-            fos.write(data.getBytes());
-            //data 변수의 문자열을 getBytes() 메서드를 사용해 바이트 배열로 변환
-            //getBytes() 메서드는 기본 문자 인코딩을 사용해 문자열을 바이트 배열로 변환, String 클래스에서 제공하는 기능
-            //data 변수에 저장된 문자열의 각 문자가 1바이트로 인코딩돼 바이트 배열의 요소가 됨
-            fos.close();
-            //try-with-resources 문법을 사용하지 않았기에 명시적으로 close() 메서드를 호출해 스트림을 닫음
-            //닫지 않으면 파일이 잠겨서 다른 프로세스나 프로그램에 접근할 수 없거나 데이터가 완전히 작성되지 않을 수도 있다.
-            System.out.println("Writing completed");
-            //파일쓰기 작업이 성공하면 메시지를 출력해 알림
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:/temp/output.txt",true))){
+            //try-with-resources 문법으로 FileWriter와 BufferedWriter 객체를 생성. try 블록이 끝나면 자동으로 스트림을 닫는다
+            //FileWriter처럼 FileWriter 객체를 생성할 때 파일명과 함께 두 번째 인자로 true를 전달하면 append 모드로 열린다.
+            //해당 모드에서는 기존 파일을 덮어쓰지 않고, 파일 끝에 새로운 내용을 추가.
+            writer.newLine(); // 새 줄(줄 바꿈)을 파일에 추가
+            writer.write("Hello, JAVA!"); //문자열을 파일에 쓴다. 위 메서드에 의해 줄 바꿈된 후 해당 문자열이 추가
+            writer.newLine(); //줄 바꿈
+            writer.write("This is another line."); //줄 바꿈후에 또 다른 문자열을 작성
         }
         catch (IOException e){
-            //try 블록에서 발생할 수 있는 IOEXception을 처리한다. 보통 파일을 쓰거나 닫을 때 문제가 발생할 가능성이 있다.
             e.printStackTrace();
         }
     }
